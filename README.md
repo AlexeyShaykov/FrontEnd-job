@@ -30,11 +30,48 @@ while ((aIndex == -1) && (bIndex == -1) && (i > 0))
 ```
 в пользу цикла для массива символов входящей строки
 
-```
-[...str].every((element, index) => {}
-```
-весь код функции
 
+код функции - оригинал
+```
+function func(s, a, b) {
+
+	if (s.match(/^$/)) {
+		return -1;
+	}
+
+	var i = s.length -1;
+	var aIndex =     -1;
+	var bIndex =     -1;
+
+	while ((aIndex == -1) && (bIndex == -1) && (i > 0)) {
+	    if (s.substring(i, i +1) == a) {
+	    	aIndex = i;
+    	}
+	    if (s.substring(i, i +1) == b) {
+	    	bIndex = i;
+    	}
+	    i = i - 1;
+	}
+
+	if (aIndex != -1) {
+	    if (bIndex == -1) {
+	        return aIndex;
+	    }
+	    else {
+	        return Math.max(aIndex, bIndex);
+	    }
+	}
+
+	if (bIndex != -1) {
+	    return bIndex;
+	}
+	else {
+	    return -1;
+	}
+}
+```
+
+код функции - рефакторинг
 ```
 function getSignIndex(str, firstSign, secondSign) {
 	if (str === '' || str == null) {
@@ -43,24 +80,30 @@ function getSignIndex(str, firstSign, secondSign) {
 
   let firstIndex = -1;
   let secondIndex = -1;
+  const arStr = [...str].reverse();
+  const length = arStr.length - 1;
 
-  [...str].every((element, index) => {
+  arStr.every((element, index) => {
     if (element === firstSign) {
-      firstIndex = index;
+      firstIndex = length - index;
     }
     if (element === secondSign) {
-      secondIndex = index;
+      secondIndex = length - index;
     }
-    if (firstIndex >= 0 && secondIndex >= 0) {
+    if (firstIndex >= 0 || secondIndex >= 0 || index === length - 1) {
       return false;
     } else {
       return true;
     }
   })
-
-  return Math.max(firstIndex, secondIndex);
+  return firstIndex < 0 ? secondIndex : firstIndex;
 }
 ```
+
+## :muscle: С тестами сильно помог
+
+[Mochajs](https://mochajs.org/)
+сами тесты в ./test/test.js
 
 -----
 
