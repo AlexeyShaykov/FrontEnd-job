@@ -1,0 +1,1 @@
+export const SET_OPERATORS_LIST = 'SET_OPERATORS_LIST';
