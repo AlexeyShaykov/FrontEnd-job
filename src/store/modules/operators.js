@@ -1,5 +1,4 @@
 import * as types from '../mutation-types';
-import Vue from 'vue';
 
 
 const initialState = {
@@ -15,7 +14,7 @@ const getters = {
 const actions = {
   setOperatorsList({ commit }, { operators }) {
     commit(types.SET_OPERATORS_LIST, operators);
-  },
+  }
 };
 
 // mutations

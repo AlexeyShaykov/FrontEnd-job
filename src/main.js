@@ -2,9 +2,9 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import Vuetify from 'vuetify';
 import Toasted from 'vue-toasted';
-import router from './router';
-import store from './store';
-import App from './App';
+import router from '@/router';
+import store from '@/store';
+import App from '@/App';
 
 Vue.use(Vuex);
 Vue.use(Vuetify);

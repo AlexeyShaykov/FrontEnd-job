@@ -1,7 +1,7 @@
 <template>
-    <v-app id="inspire">
+    <v-app>
       <v-layout>
-        <v-flex xs12 sm6 offset-sm3>
+        <v-flex sm6 offset-sm3>
           <v-card>
              <v-card-title primary-title>
               <div>
@@ -19,8 +19,7 @@
                   :to="{ name: 'payment', params: { operator: item.name }}">
                     <v-card-media
                       :src="item.value"
-                      height="150px"
-                    >
+                      height="150px">
                     </v-card-media>
                   </v-card>
                 </v-flex>
@@ -40,7 +39,7 @@ import { timeout } from './store/utils.js';
 
 export default {
   data: () => ({
-   items: [
+    items: [
       { name: 'mts', value: 'https://www.garage89.ru/images/statyi/mts_ru.png' },
       { name: 'megafon', value: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/MegaFon_sign%2Blogo_horiz_green_RU_%28RGB%29.svg/2000px-MegaFon_sign%2Blogo_horiz_green_RU_%28RGB%29.svg.png' },
       { name: 'beelain', value: 'https://inplat.ru/public/img/id/beeline.png' },
@@ -50,27 +49,27 @@ export default {
       { name: 'volna', value: 'https://volnamobile.ru/bitrix/templates/default/images/logo.svg' },
       { name: 'Vk-mobile', value: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Vk-mobile.svg/2000px-Vk-mobile.svg.png' }
     ]
- }),
- computed: {
-   ...mapGetters({
-     operators: 'getOperators'
-   })
- },
- methods: {
-   ...mapActions({
-     setOperatorsList: 'setOperatorsList'
-   })
- },
- beforeMount() {
-   if (this.operators.length > 0) {
-     return;
-   }
-   timeout(10, axios.get(`/api/operators`)).then((response) => {
-   }).catch(err => {
-     this.setOperatorsList({ 'operators': this.items });
-   });
- }
-}
+  }),
+  computed: {
+    ...mapGetters({
+      operators: 'getOperators'
+    })
+  },
+  methods: {
+    ...mapActions({
+      setOperatorsList: 'setOperatorsList'
+    })
+  },
+  beforeMount() {
+    if (this.operators.length > 0) {
+      return;
+    }
+    timeout(10, axios.get('/api/operators')).then((response) => {
+    }).catch(err => {
+      this.setOperatorsList({ 'operators': this.items });
+    });
+  }
+};
 </script>
 
 <style lang="less">
