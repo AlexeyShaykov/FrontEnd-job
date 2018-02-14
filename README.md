@@ -103,6 +103,7 @@ function getSignIndex(str, firstSign, secondSign) {
 ## :muscle: С тестами сильно помог
 
 [Mochajs](https://mochajs.org/)
+
 сами тесты в ./test/test.js
 
 ``` bash
