@@ -105,6 +105,9 @@ function getSignIndex(str, firstSign, secondSign) {
 [Mochajs](https://mochajs.org/)
 сами тесты в ./test/test.js
 
+``` bash
+./node_modules/mocha/bin/mocha
+```
 -----
 
 > Задача №2 — практическое задание

@@ -59,15 +59,6 @@ export default {
     ...mapActions({
       setOperatorsList: 'setOperatorsList'
     })
-  },
-  beforeMount() {
-    if (this.operators.length > 0) {
-      return;
-    }
-    timeout(10, axios.get('/api/operators')).then((response) => {
-    }).catch(err => {
-      this.setOperatorsList({ 'operators': this.items });
-    });
   }
 };
 </script>

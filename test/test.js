@@ -62,35 +62,46 @@ function func(s, a, b) {
 }
 
 var assert = require('assert');
-describe('comparison of work of functions', function() {
-  describe('find last', function() {
-    it('both should return 3', function() {
-      assert.equal(getSignIndex('abcd', 'a', 'd'), func('abcd', 'a', 'd'));
-    });
-  });
-	describe('ignore first', function() {
-    it('both should return -1', function() {
-      assert.equal(getSignIndex('abcd', 'a', 'r'), func('abcd', 'a', 'r'));
-    });
-  });
-	describe('one empty', function() {
-    it('both should return 2', function() {
-      assert.equal(getSignIndex('abcd', 'c', ''), func('abcd', 'c', ''));
-    });
-  });
-  describe('both empty', function() {
-    it('both should return -1', function() {
-      assert.equal(getSignIndex('abcd', '', ''), func('abcd', '', ''));
-    });
-  });
-  describe('different length', function() {
-    it('both should return 3', function() {
-      assert.equal(getSignIndex('abcdefjh', 'bc', 'd'), func('abcdefjh', 'bc', 'd'));
-    });
-  });
-  describe('caught first', function() {
-    it('both should return 5', function() {
-      assert.equal(getSignIndex('abcdecfjh', 'c', 'd'), func('abcdecfjh', 'c', 'd'));
-    });
-  });
-});
+
+
+function testStrangeFunctionEquality(fn) {
+	describe(`Testing equality of ${fn.name}() to original func()`, function() {
+	  describe('Find last', function() {
+	    it('both should return 3', function() {
+	      assert.equal(fn('abcd', 'a', 'd'), func('abcd', 'a', 'd'));
+	    });
+	  });
+		describe('Ignore first', function() {
+	    it('both should return -1', function() {
+	      assert.equal(fn('abcd', 'a', 'r'), func('abcd', 'a', 'r'));
+	    });
+	  });
+		describe('First empty', function() {
+	    it('both should return 2', function() {
+	      assert.equal(fn('abcd', '', 'c'), func('abcd', '', 'c'));
+	    });
+	  });
+		describe('Second empty', function() {
+	    it('both should return 2', function() {
+	      assert.equal(fn('abcd', 'a', ''), func('abcd', 'a', ''));
+	    });
+	  });
+	  describe('Both empty', function() {
+	    it('both should return -1', function() {
+	      assert.equal(fn('abcd', '', ''), func('abcd', '', ''));
+	    });
+	  });
+	  describe('Different length', function() {
+	    it('both should return 3', function() {
+	      assert.equal(fn('abcdefjh', 'bc', 'd'), func('abcdefjh', 'bc', 'd'));
+	    });
+	  });
+	  describe('Caught first', function() {
+	    it('both should return 5', function() {
+	      assert.equal(fn('abcdecfjh', 'c', 'd'), func('abcdecfjh', 'c', 'd'));
+	    });
+	  });
+	});
+}
+
+testStrangeFunctionEquality(getSignIndex);
