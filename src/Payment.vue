@@ -46,10 +46,10 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import axios from 'axios';
 import Vue from 'vue';
 
 import { timeout } from './store/utils.js';
+import { postPayment } from './main.js';
 
 export default {
   data: () => ({
@@ -81,13 +81,11 @@ export default {
       if (this.$refs.form.validate()) {
         this.loading = true;
         Vue.toasted.info('Пополняю');
-        timeout(2000, axios.post('/api/submitPayment', {
+        timeout(2000, postPayment({
           name: this.operator,
           phone: this.phone,
           amount: this.amount
-        })).then((response) => {
-
-        }).catch(err => {
+        })).then(response => {
           this.loading = false;
           const randomSucces = Math.random() >= 0.5;
           if (randomSucces) {
@@ -97,6 +95,9 @@ export default {
           }
           Vue.toasted.error('Ошибка оплаты');
           this.valid = false;
+        }).catch(err => {
+          console.log(err);
+          Vue.toasted.error('Нет соединения с сервером оплаты');
         });
       }
     }

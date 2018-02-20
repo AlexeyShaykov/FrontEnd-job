@@ -6,8 +6,9 @@
 
 <script>
 import { mapActions } from 'vuex';
-import axios from 'axios';
+import Vue from 'vue';
 
+import { getAllOperators } from './main.js';
 import { timeout } from './store/utils.js';
 
 export default {
@@ -25,16 +26,18 @@ export default {
     ]
   }),
   beforeMount() {
-    timeout(10, axios.get('/api/operators')).then((response) => {
-    }).catch(err => {
+    timeout(10, getAllOperators()).then(response => {
       this.setOperatorsList({ 'operators': this.items });
+    }).catch(err => {
+      console.log(err);
+      Vue.toasted.error('При загрузке операторов произошла ошибка');
     });
   },
   methods: {
     ...mapActions({
       setOperatorsList: 'setOperatorsList'
     })
-  },
+  }
 };
 </script>
 <style lang="less">
