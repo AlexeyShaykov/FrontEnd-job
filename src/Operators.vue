@@ -35,10 +35,10 @@
 import { mapGetters } from 'vuex';
 export default {
 computed: {		
- -    ...mapGetters({		
- -      operators: 'getOperators'		
- -    })		
- -  },
+ ...mapGetters({		
+   operators: 'getOperators'		
+   })		
+}
 };
 </script>
 
