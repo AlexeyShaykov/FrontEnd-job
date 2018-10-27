@@ -126,6 +126,10 @@ yarn run dev
 # build for production with minification
 yarn run build
 ```
+## Ссылка на макет
+
+https://vue-test-job.netlify.com
+
 
 ## :muscle: В создании проекта принимали участие
 
