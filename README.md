@@ -126,7 +126,7 @@ yarn run dev
 # build for production with minification
 yarn run build
 ```
-## Ссылка на макет
+## Ссылка на макет (if not open use vpn)
 
 https://vue-test-job.netlify.com
 
